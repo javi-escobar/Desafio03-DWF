@@ -1,0 +1,28 @@
+-- Crear la base de datos
+CREATE DATABASE IF NOT EXISTS productos_dwf CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- Seleccionar la base de datos
+USE productos_dwf;
+
+-- Crear la tabla de productos 
+CREATE TABLE IF NOT EXISTS productos (
+    codigo_producto VARCHAR(15) PRIMARY KEY,
+    nombre_producto VARCHAR(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+    descripcion TEXT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+    nombre_imagen VARCHAR(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+    categoria VARCHAR(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+    precio DECIMAL(10,2) NOT NULL,
+    existencias INT NOT NULL,
+    UNIQUE KEY unique_codigo_producto (codigo_producto) -- Asegura que el código del producto sea único
+);
+
+-- Insertar algunos registros de prueba
+INSERT INTO productos (codigo_producto, nombre_producto, descripcion, categoria, precio, existencias)
+VALUES 
+    ('PROD00001', 'Camiseta de algodon', 'Camiseta de algodon orgonico', 'Textil', 25.99, 50),
+    ('PROD00002', 'Taza de ceramica', 'Taza blanca con una impresion', 'Promocional', 9.99, 100),
+    ('PROD00003', 'Gorra bordada', 'Gorra de tela', 'Textil', 15.50, 30),
+    ('PROD00004', 'Llavero metalico', 'Llavero de metal', 'Promocional', 4.75, 200);
+
+-- Mostrar la tabla de productos
+SELECT * FROM productos;
